@@ -1,0 +1,25 @@
+{
+  "files": {
+    "main.css": "/challenge-6-ukraine-nft/static/css/main.4d4a7ccf.chunk.css",
+    "main.js": "/challenge-6-ukraine-nft/static/js/main.b7d6d722.chunk.js",
+    "main.js.map": "/challenge-6-ukraine-nft/static/js/main.b7d6d722.chunk.js.map",
+    "runtime-main.js": "/challenge-6-ukraine-nft/static/js/runtime-main.7c469ed7.js",
+    "runtime-main.js.map": "/challenge-6-ukraine-nft/static/js/runtime-main.7c469ed7.js.map",
+    "static/css/2.fc8f8e93.chunk.css": "/challenge-6-ukraine-nft/static/css/2.fc8f8e93.chunk.css",
+    "static/js/2.b9ba8008.chunk.js": "/challenge-6-ukraine-nft/static/js/2.b9ba8008.chunk.js",
+    "static/js/2.b9ba8008.chunk.js.map": "/challenge-6-ukraine-nft/static/js/2.b9ba8008.chunk.js.map",
+    "index.html": "/challenge-6-ukraine-nft/index.html",
+    "static/css/2.fc8f8e93.chunk.css.map": "/challenge-6-ukraine-nft/static/css/2.fc8f8e93.chunk.css.map",
+    "static/css/main.4d4a7ccf.chunk.css.map": "/challenge-6-ukraine-nft/static/css/main.4d4a7ccf.chunk.css.map",
+    "static/js/2.b9ba8008.chunk.js.LICENSE.txt": "/challenge-6-ukraine-nft/static/js/2.b9ba8008.chunk.js.LICENSE.txt",
+    "static/media/404.6fa35088.jpg": "/challenge-6-ukraine-nft/static/media/404.6fa35088.jpg",
+    "static/media/App.css": "/challenge-6-ukraine-nft/static/media/Inter-Regular.9cd7588f.ttf"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.7c469ed7.js",
+    "static/css/2.fc8f8e93.chunk.css",
+    "static/js/2.b9ba8008.chunk.js",
+    "static/css/main.4d4a7ccf.chunk.css",
+    "static/js/main.b7d6d722.chunk.js"
+  ]
+}
