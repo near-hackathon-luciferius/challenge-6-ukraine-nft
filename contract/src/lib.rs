@@ -133,6 +133,13 @@ impl Contract {
         metadata.title = Some(format!("Kawaii Animal #{}", &token_id));
         self.tokens.internal_mint(token_id, token_owner_id, Some(metadata))
     }
+
+    pub fn clear_templates(
+        &mut self
+    ) {
+        assert_eq!(self.tokens.owner_id, env::predecessor_account_id(), "Only owner can clear the state.");
+        self.metadata_templates.clear();
+    }
 }
 
 near_contract_standards::impl_non_fungible_token_core!(Contract, tokens);
