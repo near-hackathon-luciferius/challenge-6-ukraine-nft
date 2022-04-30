@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 const Dashboard = ({version, currentUser}) => {
    return <>
                  <header>
-                   <h1>NEAR Challenge #3 - NFT Art - {version}</h1>
+                   <h1>NEAR Challenge #6 - Kawaii Zoo NFTs - {version}</h1>
                  </header>
                   <p>
                       This app demonstrates how to mint nfts in with the NEAR blockchain. While minting
@@ -21,7 +21,7 @@ const Dashboard = ({version, currentUser}) => {
                       the artwork.
                   </p>
                  <h5>Head over to <Link className="menu-item" to="/collection">your collection</Link> to mint 
-                     you first artwork or go to <Link className="menu-item" to="/marketplace">the marketplace</Link> to
+                     you first animal or go to <Link className="menu-item" to="/marketplace">the marketplace</Link> to
                      discover what others created.
                  </h5>
              </>

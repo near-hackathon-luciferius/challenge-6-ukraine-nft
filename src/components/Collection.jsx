@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import Form from './Form';
 
-const Collection = ({currentUser, onNftMint, errorMessage, contract}) => {
+const Collection = ({currentUser, onNftMint, contract}) => {
     const [nfts, setNfts] = useState([]);
   
   useEffect(() => {
@@ -40,7 +40,7 @@ const Collection = ({currentUser, onNftMint, errorMessage, contract}) => {
                       <div className="col s4">
                           <div className="card">
                             <div className="card-image">
-                              <img src={nft.metadata.media} alt={nft.metadata.title}/>
+                              <img src={nft.metadata.media} alt={nft.metadata.title} height="200" className='nft-image'/>
                             </div>
                             <div className="card-title">{nft.metadata.title}</div>
                             <div className="card-content">
@@ -50,16 +50,19 @@ const Collection = ({currentUser, onNftMint, errorMessage, contract}) => {
                       </div>)}          
                   </div>)}
                  <h5>Mint a new NFT below.</h5>
-                 <Form onNftMint={onNftMint} errorMessage={errorMessage} />
+                 <Form onNftMint={onNftMint} />
           </>
 }
 
 Collection.propTypes = {
   onNftMint: PropTypes.func.isRequired,
-  errorMessage: PropTypes.string.isRequired,
   currentUser: PropTypes.shape({
     accountId: PropTypes.string.isRequired,
     balance: PropTypes.string.isRequired
+  }),
+  contract: PropTypes.shape({
+    nft_supply_for_owner: PropTypes.func.isRequired,
+    nft_tokens_for_owner: PropTypes.func.isRequired
   })
 };
 

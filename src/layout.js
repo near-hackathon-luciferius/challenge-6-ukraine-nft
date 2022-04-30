@@ -16,7 +16,7 @@ const Layout = ({currentUser, signIn, signOut, clearMessage, message}) => {
           </Link>
 
           <Link className="menu-item" to="/collection">
-            My Collection
+            Collection
           </Link>
 
           <Link className="menu-item" to="/marketplace">

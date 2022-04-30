@@ -9257,4 +9257,8 @@ nav {
   font-size: 20px;
 }
 
+.nft-image {
+  object-fit: contain;
+}
+
 /*# sourceMappingURL=/src.e31bb0bc.css.map */
