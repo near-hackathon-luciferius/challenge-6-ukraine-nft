@@ -25,7 +25,7 @@ use near_sdk::borsh::{self, BorshDeserialize, BorshSerialize};
 use near_sdk::collections::{LazyOption, UnorderedMap};
 use near_sdk::json_types::Base64VecU8;
 use near_sdk::{
-    env, near_bindgen, require, AccountId, BorshStorageKey, PanicOnDefault, Promise, PromiseOrValue,
+    env, near_bindgen, require, AccountId, BorshStorageKey, PanicOnDefault, Promise, PromiseOrValue
 };
 
 #[near_bindgen]
@@ -36,7 +36,7 @@ pub struct Contract {
     metadata_templates: UnorderedMap<u64, TokenMetadata>
 }
 
-const DATA_IMAGE_SVG_NEAR_ICON: &str = "data:image/svg+xml,%3C?xml version='1.0' encoding='utf-8'?%3E %3C!-- Svg Vector Icons : http://www.onlinewebfonts.com/icon --%3E %3C!DOCTYPE svg PUBLIC '-//W3C//DTD SVG 1.1//EN' 'http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd'%3E %3Csvg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' x='0px' y='0px' viewBox='0 0 1000 1000' enable-background='new 0 0 1000 1000' xml:space='preserve'%3E %3Cmetadata%3E Svg Vector Icons : http://www.onlinewebfonts.com/icon %3C/metadata%3E %3Cg%3E%3Cg transform='translate(0.000000,511.000000) scale(0.100000,-0.100000)'%3E%3Cpath d='M9142.9,4429.6c-128.4-46-172.5-80.5-601.8-490.7c-237.6-226.2-440.8-414-450.4-417.8c-7.7-1.9-74.7,34.5-147.6,82.4c-172.5,115-693.8,371.8-933.4,460c-1249.6,458.1-2591.3,483-3731.7,72.8c-701.5-251.1-1357-655.5-1857.2-1144.2c-402.5-394.8-655.5-741.7-893.2-1228.6C-137.4,408.5-20.5-1126.7,834.3-2267.1c182.1-243.4,615.2-693.8,881.7-916.1c622.9-523.3,1282.2-864.4,1945.4-1006.2c291.3-63.3,833.7-63.3,1081-1.9c306.7,76.7,603.7,231.9,824.2,427.4c373.8,331.6,638.2,897,948.7,2016.3c157.1,567.3,245.3,751.3,479.2,998.6c153.3,161,295.2,266.4,672.7,509.8c419.7,268.3,609.5,415.9,854.8,661.2c322,322,536.7,690,611.4,1046.5c72.8,348.8,3.8,787.7-174.4,1105.9l-49.8,90.1l216.6,210.8c120.8,116.9,320.1,310.5,444.7,431.2c285.6,276,329.7,350.7,329.7,565.4c0,187.8-44.1,297.1-172.5,419.7C9578,4437.3,9326.9,4496.7,9142.9,4429.6z M9470.7,4105.7c120.8-80.5,164.8-233.8,99.7-352.7C9518.6,3663,5811.8,124.9,5733.2,90.4c-235.7-97.7-473.4,155.2-350.7,373.7c38.3,69,3735.5,3612.8,3814.1,3655C9275.2,4163.2,9394,4157.5,9470.7,4105.7z M5409.3,3825.9c153.3-59.4,304.7-201.3,383.3-362.3c57.5-116.9,63.2-141.8,63.2-310.5c0-168.7-5.7-193.6-63.2-310.5c-76.7-159.1-228.1-302.8-383.3-362.2c-84.3-34.5-147.6-44.1-281.7-46c-155.3,0-185.9,7.7-300.9,61.3c-297.1,139.9-460,440.8-415.9,764.7c38.3,277.9,268.3,530.9,548.2,601.8C5072,3889.1,5286.7,3871.9,5409.3,3825.9z M3188,2524.5c157.2-78.6,300.9-230,360.3-383.3c65.2-166.7,63.2-396.7-7.7-548.1c-107.3-230-272.2-366.1-517.5-425.5c-392.9-97.8-795.4,172.5-877.8,590.3c-53.7,268.3,95.8,594.2,339.2,736c139.9,82.4,231.9,103.5,412.1,97.7C3038.5,2585.8,3080.6,2576.3,3188,2524.5z M2020.7,613.6c216.6-57.5,391-203.2,486.8-408.2c44.1-93.9,51.8-134.2,51.8-291.3c0-161-5.7-197.4-55.6-300.9c-67.1-145.7-216.6-293.2-369.9-366.1c-95.8-44.1-136.1-51.7-293.2-51.7c-164.8,0-193.6,5.7-310.5,61.3c-155.2,72.8-279.8,195.5-354.6,346.9c-47.9,97.8-53.7,128.4-53.7,310.5c0,182.1,5.7,210.8,53.7,306.7c99.7,195.5,270.2,337.3,473.4,391C1786.9,648.1,1884.7,648.1,2020.7,613.6z M5137.2,25.2c26.8-42.1,90.1-109.2,139.9-145.7c105.4-74.8,105.4-84.3,24.9-264.5c-101.6-222.3-297.1-368-640.1-479.2c-208.9-67.1-231.9-80.5-325.8-174.4l-99.7-103.5l-23,53.7c-13.4,30.7-23,141.8-24.9,256.8c0,201.3,0,203.2,84.3,369.9c138,279.8,389.1,502.2,622.9,548.1C5058.6,119.1,5085.4,111.5,5137.2,25.2z M3168.8-1385.4c218.5-101.6,350.7-258.8,408.2-483c84.3-329.7-78.6-674.7-391-828c-118.8-59.4-139.9-63.2-320.1-61.3c-164.8,0-207,7.7-302.8,51.8c-295.2,136.1-477.2,477.2-415.9,785.8c57.5,289.4,270.2,517.5,550.1,588.4C2827.6-1299.2,3036.5-1322.2,3168.8-1385.4z'/%3E%3C/g%3E%3C/g%3E %3C/svg%3E";
+const DATA_IMAGE_SVG_NEAR_ICON: &str = "data:image/svg+xml,%3C?xml version='1.0' encoding='utf-8'?%3E %3C!-- Svg Vector Icons : http://www.onlinewebfonts.com/icon --%3E %3C!DOCTYPE svg PUBLIC '-//W3C//DTD SVG 1.1//EN' 'http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd'%3E %3Csvg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' x='0px' y='0px' viewBox='0 0 1000 1000' enable-background='new 0 0 1000 1000' xml:space='preserve'%3E %3Cmetadata%3E Svg Vector Icons : http://www.onlinewebfonts.com/icon %3C/metadata%3E %3Cg%3E%3Cg transform='translate(0.000000,511.000000) scale(0.100000,-0.100000)'%3E%3Cpath d='M2917.9,4516.9c-581.4-198.5-878-936.4-672.5-1678.9c98.1-354.9,273.2-649.1,520.7-875.7c726.2-665.5,1660.3-361.9,1849.4,600.1c105.1,532.4-79.4,1146.5-469.4,1559.8C3774.8,4514.5,3331.2,4657,2917.9,4516.9z'/%3E%3Cpath d='M6469.5,4528.5c-224.2-74.7-368.9-165.8-551.1-336.3c-551.1-525.4-726.2-1368.4-413.3-2003.5c326.9-665.5,1116.1-777.6,1706.9-242.8c254.5,228.8,427.3,511.4,527.7,854.6c212.5,737.9-42.1,1454.8-604.8,1702.3C6969.2,4572.9,6644.7,4586.9,6469.5,4528.5z'/%3E%3Cpath d='M8641.2,1976.3c-457.7-72.4-894.3-511.4-1074.1-1083.5c-72.4-231.2-91.1-686.5-37.3-931.7c175.1-786.9,859.3-1186.2,1501.5-880.3c611.8,294.2,985.4,1134.9,835.9,1889.1c-46.7,226.5-189.1,523.1-326.9,677.2C9304.3,1908.6,8979.7,2027.7,8641.2,1976.3z'/%3E%3Cpath d='M872.3,1934.2c-266.2-98.1-467-294.2-614.1-595.4c-385.3-791.6-35-1903.1,707.5-2258c768.3-364.3,1534.2,263.9,1534.2,1254c0,688.9-329.3,1282-861.7,1545.8c-161.1,79.4-191.5,86.4-408.6,91.1C1042.8,1978.6,968.1,1969.3,872.3,1934.2z'/%3E%3Cpath d='M4704.2,885.8c-198.5-70.1-378.3-193.8-544.1-371.3c-191.5-203.1-270.9-359.6-399.3-786.9c-137.8-462.3-263.9-693.5-565.1-1046.1c-249.8-287.2-436.7-415.6-1062.5-721.6c-467-226.5-590.8-296.5-695.9-397c-233.5-219.5-347.9-558.1-296.6-861.6c84.1-464.7,504.4-885,1020.4-1015.8c217.2-53.7,354.9-44.4,1195.6,93.4c889.7,147.1,1160.5,175.1,1641.6,175.1c481,0,751.9-30.4,1639.2-175.1c432-70.1,845.3-128.4,922.4-128.4c572.1,0,1162.9,460,1281.9,1001.8c74.7,331.6-32.7,674.8-280.2,910.7c-105.1,98.1-231.1,170.5-695.8,397c-733.2,357.3-938.7,516.1-1261,971.4c-172.8,242.8-261.6,434.3-369,796.3c-137.8,457.7-207.8,590.8-432,817.3c-144.8,144.8-228.8,210.2-371.3,280.2c-165.8,79.4-203.2,88.7-397,95.7C4874.7,927.8,4795.3,918.5,4704.2,885.8z'/%3E%3C/g%3E%3C/g%3E %3C/svg%3E";
 
 #[derive(BorshSerialize, BorshStorageKey)]
 enum StorageKey {
@@ -134,11 +134,61 @@ impl Contract {
         self.tokens.internal_mint(token_id, token_owner_id, Some(metadata))
     }
 
+    #[payable]
+    pub fn test_mint(
+        &mut self,
+        token_owner_id: AccountId,
+        index: u64
+    ) -> Token {
+        assert!(env::predecessor_account_id().as_str() == "kawaii-zoo-game.cryptosketches.testnet", "Can only be called by kawaii-zoo-game.cryptosketches.testnet.");
+        let total_supply: u128 = self.tokens.nft_total_supply().into();
+        let token_id = (total_supply+1u128).to_string();
+        let mut metadata = self.metadata_templates.get(&index).clone().unwrap();
+        metadata.title = Some(format!("Kawaii Animal #{}", &token_id));
+        self.tokens.internal_mint(token_id, token_owner_id, Some(metadata))
+    }
+
+    pub fn get_nfts(
+        &self, 
+        nft_ids: Vec<u64>
+    ) -> Vec<Token>{
+        let mut result: Vec<Token> = Vec::new();
+        for id in nft_ids.iter(){
+            let token_opt = self.nft_token(id.to_string());
+            match token_opt{
+                Some(token) => result.push(token),
+                None => env::panic_str(format!("Token {} was not minted yet.", id).as_str())
+            };
+        }
+        result
+    }
+
+    pub fn invalidate_nfts(
+        &mut self, 
+        nft_ids: Vec<u64>
+    ){
+        assert!(env::predecessor_account_id().as_str() == "kawaii-zoo-game.cryptosketches.testnet", "Can only be called by kawaii-zoo-game.cryptosketches.testnet.");
+
+        for id in nft_ids.iter(){
+            let mut metadata = self.nft_token(id.to_string()).unwrap().metadata.unwrap();
+            metadata.title = Some("Used".into());
+            metadata.description = Some("This NFT was already used".into());
+            metadata.media = Some("https://raw.githubusercontent.com/near-hackathon-luciferius/challenge-6-resources/main/used.png".into());
+            metadata.extra = Some("used".into());
+            self.tokens.token_metadata_by_id.as_mut().unwrap().insert(&id.to_string(), &metadata);
+        }
+    }
+
     pub fn clear_templates(
         &mut self
     ) {
         assert_eq!(self.tokens.owner_id, env::predecessor_account_id(), "Only owner can clear the state.");
         self.metadata_templates.clear();
+        for kv in self.tokens.owner_by_id.iter(){
+            self.tokens.token_metadata_by_id.as_mut().unwrap().remove(&kv.0);
+            self.tokens.approvals_by_id.as_mut().unwrap().remove(&kv.0);
+        }
+        self.tokens.owner_by_id.clear();
     }
 }
 
