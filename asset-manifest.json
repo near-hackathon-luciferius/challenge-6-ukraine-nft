@@ -1,25 +1,25 @@
 {
   "files": {
     "main.css": "/challenge-6-ukraine-nft/static/css/main.3f615c59.chunk.css",
-    "main.js": "/challenge-6-ukraine-nft/static/js/main.49416ad8.chunk.js",
-    "main.js.map": "/challenge-6-ukraine-nft/static/js/main.49416ad8.chunk.js.map",
-    "runtime-main.js": "/challenge-6-ukraine-nft/static/js/runtime-main.7c469ed7.js",
-    "runtime-main.js.map": "/challenge-6-ukraine-nft/static/js/runtime-main.7c469ed7.js.map",
+    "main.js": "/challenge-6-ukraine-nft/static/js/main.a3f8eecb.chunk.js",
+    "main.js.map": "/challenge-6-ukraine-nft/static/js/main.a3f8eecb.chunk.js.map",
+    "runtime-main.js": "/challenge-6-ukraine-nft/static/js/runtime-main.ca74fc5d.js",
+    "runtime-main.js.map": "/challenge-6-ukraine-nft/static/js/runtime-main.ca74fc5d.js.map",
     "static/css/2.fc8f8e93.chunk.css": "/challenge-6-ukraine-nft/static/css/2.fc8f8e93.chunk.css",
-    "static/js/2.076f9ae7.chunk.js": "/challenge-6-ukraine-nft/static/js/2.076f9ae7.chunk.js",
-    "static/js/2.076f9ae7.chunk.js.map": "/challenge-6-ukraine-nft/static/js/2.076f9ae7.chunk.js.map",
+    "static/js/2.83a364d7.chunk.js": "/challenge-6-ukraine-nft/static/js/2.83a364d7.chunk.js",
+    "static/js/2.83a364d7.chunk.js.map": "/challenge-6-ukraine-nft/static/js/2.83a364d7.chunk.js.map",
     "index.html": "/challenge-6-ukraine-nft/index.html",
     "static/css/2.fc8f8e93.chunk.css.map": "/challenge-6-ukraine-nft/static/css/2.fc8f8e93.chunk.css.map",
     "static/css/main.3f615c59.chunk.css.map": "/challenge-6-ukraine-nft/static/css/main.3f615c59.chunk.css.map",
-    "static/js/2.076f9ae7.chunk.js.LICENSE.txt": "/challenge-6-ukraine-nft/static/js/2.076f9ae7.chunk.js.LICENSE.txt",
+    "static/js/2.83a364d7.chunk.js.LICENSE.txt": "/challenge-6-ukraine-nft/static/js/2.83a364d7.chunk.js.LICENSE.txt",
     "static/media/404.6fa35088.jpg": "/challenge-6-ukraine-nft/static/media/404.6fa35088.jpg",
     "static/media/App.css": "/challenge-6-ukraine-nft/static/media/Inter-Regular.9cd7588f.ttf"
   },
   "entrypoints": [
-    "static/js/runtime-main.7c469ed7.js",
+    "static/js/runtime-main.ca74fc5d.js",
     "static/css/2.fc8f8e93.chunk.css",
-    "static/js/2.076f9ae7.chunk.js",
+    "static/js/2.83a364d7.chunk.js",
     "static/css/main.3f615c59.chunk.css",
-    "static/js/main.49416ad8.chunk.js"
+    "static/js/main.a3f8eecb.chunk.js"
   ]
 }

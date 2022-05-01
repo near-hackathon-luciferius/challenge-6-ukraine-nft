@@ -1,6 +1,6 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "NEAR Challenge #6 - Kawaii Zoo NFTs",
+  "name": "A hackathon challenge with NEAR smart contracts and tools.",
   "icons": [
     {
       "src": "favicon.ico",
