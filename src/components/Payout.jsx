@@ -39,12 +39,12 @@ const Payout = ({currentUser, contract, onPayout}) => {
       function analyse(nfts, template, completeSets) {
         const set = [];
         template.forEach(ele => {
-          const nft = nfts.find(n => n.metadata.extra == ele);
+          const nft = nfts.find(n => n.metadata.extra === ele);
           if(nft){
             set.push(nft);
           }
         });
-        if(set.length == template.length){
+        if(set.length === template.length){
           completeSets.push(set);
         }
       }

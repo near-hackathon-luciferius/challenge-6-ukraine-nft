@@ -122,11 +122,7 @@ const Dashboard = ({version, nearConfig}) => {
 }
 
 Dashboard.propTypes = {
-  version: PropTypes.string.isRequired,
-  currentUser: PropTypes.shape({
-    accountId: PropTypes.string.isRequired,
-    balance: PropTypes.string.isRequired
-  })
+  version: PropTypes.string.isRequired
 };
 
 export default Dashboard;

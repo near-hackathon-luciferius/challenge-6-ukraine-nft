@@ -69,7 +69,7 @@ const App = ({ contract, nftContract, currentUser, nearConfig, wallet, provider,
         }
         setMessage(message);
       }
-  }, [lastTransaction, error]);
+  }, [lastTransaction, error, currentUser, provider]);
   
   const signIn = () => {
     wallet.requestSignIn(
@@ -94,7 +94,7 @@ const App = ({ contract, nftContract, currentUser, nearConfig, wallet, provider,
       <Route path="/" element={<Layout currentUser={currentUser} signIn={signIn} signOut={signOut} clearMessage={clearMessage} message={message}/>}>
         <Route index element={
           currentUser
-            ? <Dashboard version={version} near={near} nearConfig={nearConfig}/>
+            ? <Dashboard version={version} nearConfig={nearConfig}/>
             : <SignIn signIn={signIn}/>
         }/>
         <Route path="collection" element={

@@ -17,7 +17,7 @@ const Collection = ({currentUser, onNftMint, contract}) => {
             limit: parseInt(count)
         });
         console.log(result);
-        setNfts(splitArrayIntoChunksOfLen(result.filter(nft => nft.metadata.extra != "used"), 3));
+        setNfts(splitArrayIntoChunksOfLen(result.filter(nft => nft.metadata.extra !== "used"), 3));
         setLoaded(true);
       }
       
