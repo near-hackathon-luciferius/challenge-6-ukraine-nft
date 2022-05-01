@@ -134,6 +134,7 @@ impl Contract {
         self.tokens.internal_mint(token_id, token_owner_id, Some(metadata))
     }
 
+ /*   
     #[payable]
     pub fn test_mint(
         &mut self,
@@ -146,7 +147,8 @@ impl Contract {
         let mut metadata = self.metadata_templates.get(&index).clone().unwrap();
         metadata.title = Some(format!("Kawaii Animal #{}", &token_id));
         self.tokens.internal_mint(token_id, token_owner_id, Some(metadata))
-    }
+    } 
+*/
 
     pub fn get_nfts(
         &self, 

@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Range, Button } from 'react-materialize';
+import { Range, Button, TextInput } from 'react-materialize';
 
 export default function Form({ onNftMint }) {
   return (

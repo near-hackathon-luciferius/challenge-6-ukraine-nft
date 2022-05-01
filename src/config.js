@@ -1,5 +1,6 @@
 const CONTRACT_NAME = process.env.CONTRACT_NAME || 'kawaii-zoo-game.cryptosketches.testnet';
 const NFT_CONTRACT_NAME = process.env.NFT_CONTRACT_NAME || 'kawaii-zoo-nft.cryptosketches.testnet';
+const DONATION_ACCOUNT_NAME = process.env.DONATION_ACCOUNT_NAME || 'kawaii-zoo-donation.cryptosketches.testnet';
 
 function getConfig(env) {
   switch(env) {
@@ -10,6 +11,7 @@ function getConfig(env) {
         nodeUrl: 'https://rpc.mainnet.near.org',
         contractName: CONTRACT_NAME,
         nftContractName: NFT_CONTRACT_NAME,
+        donationAccountName: DONATION_ACCOUNT_NAME,
         walletUrl: 'https://wallet.near.org',
         helperUrl: 'https://helper.mainnet.near.org'
       };
@@ -20,6 +22,7 @@ function getConfig(env) {
         nodeUrl: 'https://rpc.testnet.near.org',
         contractName: CONTRACT_NAME,
         nftContractName: NFT_CONTRACT_NAME,
+        donationAccountName: DONATION_ACCOUNT_NAME,
         walletUrl: 'https://wallet.testnet.near.org',
         helperUrl: 'https://helper.testnet.near.org'
       };
@@ -29,6 +32,7 @@ function getConfig(env) {
         nodeUrl: 'https://rpc.betanet.near.org',
         contractName: CONTRACT_NAME,
         nftContractName: NFT_CONTRACT_NAME,
+        donationAccountName: DONATION_ACCOUNT_NAME,
         walletUrl: 'https://wallet.betanet.near.org',
         helperUrl: 'https://helper.betanet.near.org'
       };
@@ -39,7 +43,8 @@ function getConfig(env) {
         keyPath: `${process.env.HOME}/.near/validator_key.json`,
         walletUrl: 'http://localhost:4000/wallet',
         contractName: CONTRACT_NAME,
-        nftContractName: NFT_CONTRACT_NAME
+        nftContractName: NFT_CONTRACT_NAME,
+        donationAccountName: DONATION_ACCOUNT_NAME
       };
     case 'test':
     case 'ci':
@@ -48,6 +53,7 @@ function getConfig(env) {
         nodeUrl: 'https://rpc.ci-testnet.near.org',
         contractName: CONTRACT_NAME,
         nftContractName: NFT_CONTRACT_NAME,
+        donationAccountName: DONATION_ACCOUNT_NAME,
         masterAccount: 'test.near'
       };
     case 'ci-betanet':
@@ -56,6 +62,7 @@ function getConfig(env) {
         nodeUrl: 'https://rpc.ci-betanet.near.org',
         contractName: CONTRACT_NAME,
         nftContractName: NFT_CONTRACT_NAME,
+        donationAccountName: DONATION_ACCOUNT_NAME,
         masterAccount: 'test.near'
       };
     default:

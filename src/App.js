@@ -6,6 +6,7 @@ import Layout from './layout';
 import NotFound from './components/404.jsx';
 import Dashboard from './components/Dashboard.jsx';
 import Collection from './components/Collection.jsx';
+import Payout from './components/Payout.jsx';
 import 'materialize-css/dist/css/materialize.css'
 import './App.css';
 import { Route, Routes } from 'react-router-dom'
@@ -35,15 +36,39 @@ const App = ({ contract, nftContract, currentUser, nearConfig, wallet, provider,
       console.log("Successfully minted.");
     })
   }
+
+  const onPayout = (set) => {
+    contract.payout(
+      {
+        nft_set: set.map(id => parseInt(id))
+      },
+      BOATLOAD_OF_GAS,
+      0
+    ).then((_) => {
+      console.log("Successfully payed out.");
+    })
+  }
   
   useEffect(() => {
       if (error){
         setMessage(decodeURI(error));
+        window.history.pushState({}, "", window.location.origin + window.location.hash);
       }
-      else if (lastTransaction) {          
-          setMessage(`Successfully minted the NFT in transaction ${lastTransaction}`);
+      else if (lastTransaction && currentUser) {          
+        getState(lastTransaction, currentUser.accountId);
+        window.history.pushState({}, "", window.location.origin + window.location.hash);
       }
-      window.history.pushState({}, "", window.location.origin + window.location.pathname);
+
+      async function getState(txHash, accountId) {
+        const result = await provider.txStatus(txHash, accountId);
+        //minting
+        let message = result.receipts_outcome[0].outcome.logs.pop();
+        if(!message){
+          //payout
+          message = result.receipts_outcome[6].outcome.logs.pop();
+        }
+        setMessage(message);
+      }
   }, [lastTransaction, error]);
   
   const signIn = () => {
@@ -69,12 +94,17 @@ const App = ({ contract, nftContract, currentUser, nearConfig, wallet, provider,
       <Route path="/" element={<Layout currentUser={currentUser} signIn={signIn} signOut={signOut} clearMessage={clearMessage} message={message}/>}>
         <Route index element={
           currentUser
-            ? <Dashboard version={version} currentUser={currentUser}/>
+            ? <Dashboard version={version} near={near} nearConfig={nearConfig}/>
             : <SignIn signIn={signIn}/>
         }/>
         <Route path="collection" element={
           currentUser
             ? <Collection onNftMint={onNftMint} currentUser={currentUser} contract={nftContract}/>
+            : <SignIn signIn={signIn}/>
+        }/>
+        <Route path="payout" element={
+          currentUser
+            ? <Payout onPayout={onPayout} currentUser={currentUser} contract={nftContract}/>
             : <SignIn signIn={signIn}/>
         }/>
         <Route path="*" element={<NotFound/>}/>

@@ -15,7 +15,7 @@ pub const DONATION_PERCENTAGE: u128 = 20;
 #[ext_contract(ext_nft_contract)]
 trait NftContract {
     fn nft_mint(&self, token_owner_id: AccountId) -> Token;
-    fn test_mint(&self, token_owner_id: AccountId, index : u64) -> Token;
+    //fn test_mint(&self, token_owner_id: AccountId, index : u64) -> Token;
     fn get_nfts(&self, nft_ids: Vec<u64>) -> Vec<Token>;
     fn invalidate_nfts(&self, nft_ids: Vec<u64>);
 }
@@ -47,18 +47,16 @@ impl Contract {
         assert!(count <= 7, "You can buy a maximum of 7 animals at a time because of the gas limits.");
         assert!(attached_deposit() >= (count as u128)*10u128.pow(24), "Each animal costs 1 NEAR. Please attach enough NEAR.");
         let mut promise: Option<Promise> = None;
-        for i in 0..count{
+        for _ in 0..count{
             match promise{
-                Some(old) => promise = Some(old.then(ext_nft_contract::test_mint(
+                Some(old) => promise = Some(old.then(ext_nft_contract::nft_mint(
                     env::predecessor_account_id(), 
-                    i as u64,
                     AccountId::from_str(NFT_CONTRACT).unwrap(), 
                     env::attached_deposit(),
                     MINT_GAS
                 ))),
-                None => promise = Some(ext_nft_contract::test_mint(
+                None => promise = Some(ext_nft_contract::nft_mint(
                     env::predecessor_account_id(), 
-                    i as u64,
                     AccountId::from_str(NFT_CONTRACT).unwrap(), 
                     env::attached_deposit(),
                     MINT_GAS
@@ -68,7 +66,7 @@ impl Contract {
         let donation = attached_deposit()/100*DONATION_PERCENTAGE;
         Promise::new(AccountId::from_str(DONATION_ACCOUNT).unwrap()).transfer(donation);
         let donation_in_near = (donation as f64)/(10u128.pow(24) as f64);
-        env::log_str(format!("Successfully minted {} kawaii animals. Donated {} NEAR", count, donation_in_near).as_str());
+        env::log_str(format!("Successfully minted {} kawaii animals. Donated {} NEAR to Ukrainian zoos.", count, donation_in_near).as_str());
     }
     
     pub fn payout(

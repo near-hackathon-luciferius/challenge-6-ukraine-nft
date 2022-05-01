@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import Form from './Form';
+import { Spinner } from 'react-materialize';
 
 const Collection = ({currentUser, onNftMint, contract}) => {
     const [nfts, setNfts] = useState([]);
+    const [loaded, setLoaded] = useState(false);
   
   useEffect(() => {
       async function fetchData() {
@@ -15,7 +17,8 @@ const Collection = ({currentUser, onNftMint, contract}) => {
             limit: parseInt(count)
         });
         console.log(result);
-        setNfts(splitArrayIntoChunksOfLen(result, 3));
+        setNfts(splitArrayIntoChunksOfLen(result.filter(nft => nft.metadata.extra != "used"), 3));
+        setLoaded(true);
       }
       
       fetchData();
@@ -28,27 +31,41 @@ const Collection = ({currentUser, onNftMint, contract}) => {
     }
     return chunks;
   }
+
+  if(!loaded){
+    return <>
+              <header>
+                <h1>Available sets.</h1>
+              </header>
+              <h1>Loading...</h1>
+              <Spinner />
+          </>
+  }
   
    return <>
                  <header>
                    <h1>{currentUser.accountId}'s Collection</h1>
                  </header>
                  
-                  {nfts.map(chunk => 
-                  <div className="row">
-                    {chunk.map(nft =>
-                      <div className="col s4">
-                          <div className="card">
-                            <div className="card-image">
-                              <img src={nft.metadata.media} alt={nft.metadata.title} height="200" className='nft-image'/>
+                  {nfts.length > 0
+                  ? nfts.map(chunk => 
+                    <div className="row">
+                      {chunk.map(nft =>
+                        <div className="col s4">
+                            <div className="card">
+                              <div className="card-image">
+                                <img src={nft.metadata.media} alt={nft.metadata.title} height="200" className='nft-image'/>
+                              </div>
+                              <div className="card-title">{nft.metadata.title}</div>
+                              <div className="card-content">
+                                <p>{nft.metadata.description}</p>
+                              </div>
                             </div>
-                            <div className="card-title">{nft.metadata.title}</div>
-                            <div className="card-content">
-                              <p>{nft.metadata.description}</p>
-                            </div>
-                          </div>
-                      </div>)}          
-                  </div>)}
+                        </div>)}          
+                    </div>)
+                  : <p>
+                        You do not have any NFTs in your collection. All used NFTs are filtered out in this view.
+                    </p>}
                  <h5>Mint a new NFT below.</h5>
                  <Form onNftMint={onNftMint} />
           </>
