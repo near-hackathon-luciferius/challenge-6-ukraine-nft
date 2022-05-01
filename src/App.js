@@ -52,11 +52,11 @@ const App = ({ contract, nftContract, currentUser, nearConfig, wallet, provider,
   useEffect(() => {
       if (error){
         setMessage(decodeURI(error));
-        window.history.pushState({}, "", window.location.origin + window.location.hash);
+        window.history.pushState({}, "", window.location.origin + window.location.pathname + window.location.hash);
       }
       else if (lastTransaction && currentUser) {          
         getState(lastTransaction, currentUser.accountId);
-        window.history.pushState({}, "", window.location.origin + window.location.hash);
+        window.history.pushState({}, "", window.location.origin + window.location.pathname + window.location.hash);
       }
 
       async function getState(txHash, accountId) {
