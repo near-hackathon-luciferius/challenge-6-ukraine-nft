@@ -82461,7 +82461,9 @@ const Layout = _ref => {
     clearMessage,
     message
   } = _ref;
-  return /*#__PURE__*/_react.default.createElement("div", {
+  return /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, /*#__PURE__*/_react.default.createElement("div", {
+    class: "image"
+  }), /*#__PURE__*/_react.default.createElement("div", {
     id: "App"
   }, /*#__PURE__*/_react.default.createElement(_reactBurgerMenu.slide, {
     pageWrapId: "page-wrapper",
@@ -82498,7 +82500,7 @@ const Layout = _ref => {
   }), message && /*#__PURE__*/_react.default.createElement(_Popup.default, {
     content: /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, /*#__PURE__*/_react.default.createElement("b", null, "A message for you"), /*#__PURE__*/_react.default.createElement("p", null, message)),
     handleClose: clearMessage
-  }));
+  })));
 };
 
 Layout.propTypes = {
@@ -98978,11 +98980,7 @@ const Dashboard = _ref => {
 };
 
 Dashboard.propTypes = {
-  version: _propTypes.default.string.isRequired,
-  currentUser: _propTypes.default.shape({
-    accountId: _propTypes.default.string.isRequired,
-    balance: _propTypes.default.string.isRequired
-  })
+  version: _propTypes.default.string.isRequired
 };
 var _default = Dashboard;
 exports.default = _default;
@@ -99068,7 +99066,7 @@ const Collection = _ref => {
         limit: parseInt(count)
       });
       console.log(result);
-      setNfts(splitArrayIntoChunksOfLen(result.filter(nft => nft.metadata.extra != "used"), 3));
+      setNfts(splitArrayIntoChunksOfLen(result.filter(nft => nft.metadata.extra !== "used"), 3));
       setLoaded(true);
     }
 
@@ -99189,14 +99187,14 @@ const Payout = _ref => {
     function analyse(nfts, template, completeSets) {
       const set = [];
       template.forEach(ele => {
-        const nft = nfts.find(n => n.metadata.extra == ele);
+        const nft = nfts.find(n => n.metadata.extra === ele);
 
         if (nft) {
           set.push(nft);
         }
       });
 
-      if (set.length == template.length) {
+      if (set.length === template.length) {
         completeSets.push(set);
       }
     }
@@ -99322,7 +99320,7 @@ module.hot.dispose(reloadCSS);
 module.hot.accept(reloadCSS);
 },{"./fonts\\static\\Inter-Regular.ttf":[["Inter-Regular.3b99ff55.ttf","fonts/static/Inter-Regular.ttf"],"fonts/static/Inter-Regular.ttf"],"./fonts\\static\\Inter-Medium.ttf":[["Inter-Medium.ccf17ea8.ttf","fonts/static/Inter-Medium.ttf"],"fonts/static/Inter-Medium.ttf"],"_css_loader":"../node_modules/parcel-bundler/src/builtins/css-loader.js"}],"../package.json":[function(require,module,exports) {
 module.exports = {
-  "name": "hello-react",
+  "name": "kawaii-zoo-react",
   "version": "0.1.0",
   "homepage": "https://near-hackathon-luciferius.github.io/challenge-6-ukraine-nft",
   "private": true,
@@ -111847,12 +111845,12 @@ const App = _ref => {
 
       setMessage(message);
     }
-  }, [lastTransaction, error]);
+  }, [lastTransaction, error, currentUser, provider]);
 
   const signIn = () => {
     wallet.requestSignIn({
       contractId: nearConfig.contractName,
-      methodNames: [contract.nft_mint.name]
+      methodNames: [contract.buy_animal.name, contract.payout.name]
     }, //contract requesting access
     'NEAR Challenge #6 - Kawaii Zoo NFTs', //optional name
     null, //optional URL to redirect to if the sign in was successful
@@ -111882,7 +111880,6 @@ const App = _ref => {
     index: true,
     element: currentUser ? /*#__PURE__*/_react.default.createElement(_Dashboard.default, {
       version: version,
-      near: near,
       nearConfig: nearConfig
     }) : /*#__PURE__*/_react.default.createElement(_SignIn.default, {
       signIn: signIn
@@ -112157,7 +112154,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "57745" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "51575" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

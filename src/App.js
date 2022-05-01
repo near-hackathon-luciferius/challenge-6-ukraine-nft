@@ -73,7 +73,7 @@ const App = ({ contract, nftContract, currentUser, nearConfig, wallet, provider,
   
   const signIn = () => {
     wallet.requestSignIn(
-      {contractId: nearConfig.contractName, methodNames: [contract.nft_mint.name]}, //contract requesting access
+      {contractId: nearConfig.contractName, methodNames: [contract.buy_animal.name, contract.payout.name]}, //contract requesting access
       'NEAR Challenge #6 - Kawaii Zoo NFTs', //optional name
       null, //optional URL to redirect to if the sign in was successful
       null //optional URL to redirect to if the sign in was NOT successful
